@@ -4,7 +4,7 @@ const request = require("request");
 
 module.exports = {
   config: {
-    name: "join",
+    name: "join2",
     version: "2.0",
     author: "Aesther",
     countDown: 5,
