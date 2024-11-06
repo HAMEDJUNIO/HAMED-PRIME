@@ -3,26 +3,20 @@ const axios = require('axios');
 const fonts = {
 
     mathsans: {
-        a: "𝖺", b: "𝖻", c: "𝖼", d: "𝖽", e: "𝖾", f: "𝖿", g: "𝗀", h: "𝗁", i: "𝗂",
+        a: "a", b: "𝖻", c: "𝖼", d: "𝖽", e: "𝖾", f: "𝖿", g: "𝗀", h: "𝗁", i: "𝗂",
     j: "𝗃", k: "𝗄", l: "𝗅", m: "𝗆", n: "𝗇", o: "𝗈", p: "𝗉", q: "𝗊", r: "𝗋",
     s: "𝗌", t: "𝗍", u: "𝗎", v: "𝗏", w: "𝗐", x: "𝗑", y: "𝗒", z: "𝗓",
-    A: "𝗔", B: "𝗕", C: "𝗖", D: "𝗗", E: "𝗘", F: "𝗙", G: "𝗚", H: "𝗛", I: "𝗜",
+     A: "𝗔", B: "𝗕", C: "𝗖", D: "𝗗", E: "𝗘", F: "𝗙", G: "𝗚", H: "𝗛", I: "𝗜",
     J: "𝗝", K: "𝗞", L: "𝗟", M: "𝗠", N: "𝗡", O: "𝗢", P: "𝗣", Q: "𝗤", R: "𝗥",
-    S: "𝗦", T: "𝗧", U: "𝗨", V: "𝗩", W: "𝗪", X: "𝗫", Y: "𝗬", Z: "𝗭"
+    S: "𝗦", T: "𝗧", U: "𝗨", V: "𝗩", W: "𝗪", X: "𝗫", Y: "𝗬", Z: "𝗭"",1: "𝟭", 2: "𝟮", 3: "𝟯", 4: "𝟰", 5: "𝟱", 6: "𝟲", 7: "𝟳", 8: "𝟴", 9: "𝟵", 0: "𝟬"
     }
 };
-const stickers = [
-  "254594546003916", "254595732670464", "254593389337365",
-  "37117808696806", "254597316003639", "254598806003490",
-  "254596219337082", "2379537642070973", "2379545095403561",
-  "2379551785402892", "254597059336998"
-];
 const rolePlay = "quand tu répond à cette question ajoutes des emojis convenable :\n\n";
 
 const Prefixes = [
-  'ae',
+  'optimus',
   'ai',
-  'mitama',
+  'prime',
 ];
 
 module.exports = {
@@ -46,17 +40,20 @@ module.exports = {
       }
       const prompt = event.body.substring(prefix.length).trim();
       if (!prompt) {
-      const randomSticker = stickers[Math.floor(Math.random() * stickers.length)];
-        await api.sendMessage({ sticker: randomSticker }, event.threadID);
+      const prompt = event.body.substring(prefix.length).trim();
 api.setMessageReaction("📚", event.messageID, () => {}, true);
+      if (!prompt) {
+        await message.reply("📚");
+        return;
+      }
         return;
       }
       const senderID = event.senderID;
       const senderInfo = await api.getUserInfo([senderID]);
       const senderName = senderInfo[senderID].name;
       const response = await axios.get(`https://sandipbaruwal.onrender.com/gemini?prompt=${encodeURIComponent(rolePlay + prompt)}`);
-      const answer = `📚 𝘼𝙀-𝙎𝙏𝙃𝙀𝙍 📚 :\n\n${response.data.answer} `;
-api.setMessageReaction("🌱", event.messageID, () => {}, true);
+      const answer = `[📕] 𝗢𝗣𝗧𝗜𝗠𝗨𝗦 𝗣𝗥𝗜𝗠𝗘\n\n${response.data.answer} \n[📚]········································⬚`;
+api.setMessageReaction("📕", event.messageID, () => {}, true);
 
       //apply const font to each letter in the answer
       let formattedAnswer = "";
